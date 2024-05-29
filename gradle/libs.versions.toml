@@ -15,6 +15,8 @@ hilt = "2.49"
 # Network
 retrofit = "2.11.0"
 moshi = "2.4.0"
+interceptor = "4.5.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +40,8 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 # Network
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

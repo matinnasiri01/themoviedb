@@ -11,11 +11,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import me.nasiri.core_network.di.NetworkModule.provideApiService
 import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +30,9 @@ class MainActivity : ComponentActivity() {
                         text = stringResource(id = R.string.app_name),
                         modifier = Modifier.padding(innerPadding)
                     )
+                }
+                lifecycleScope.launch {
+                    Log.i("tests", "${provideApiService().getAllMoviesId()}")
                 }
             }
         }

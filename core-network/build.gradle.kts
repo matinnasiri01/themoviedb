@@ -48,4 +48,6 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
+    implementation(libs.logging.interceptor)
+
 }
