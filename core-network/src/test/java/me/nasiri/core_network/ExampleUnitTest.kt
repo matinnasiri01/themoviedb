@@ -1,4 +1,4 @@
-package me.nasiri.core
+package me.nasiri.core_network
 
 import org.junit.Test
 

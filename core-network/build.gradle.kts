@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "me.nasiri.core"
+    namespace = "me.nasiri.core_network"
     compileSdk = 34
 
     defaultConfig {
@@ -42,8 +40,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
 }
