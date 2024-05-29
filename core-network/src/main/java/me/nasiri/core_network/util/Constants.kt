@@ -10,4 +10,5 @@ object Constants {
     const val GET_MOVIEID = "movie/changes"
     const val GET_GENRE = "genre/movie/list"
     const val GET_MOVIES_DETAIL = "movie/{movie_id}"
+    const val GET_TREND_MOVIES = "trending/movie/{time_window}"
 }
