@@ -32,7 +32,8 @@ class MainActivity : ComponentActivity() {
                     )
                 }
                 lifecycleScope.launch {
-                    Log.i("tests", "${provideApiService().getAllMoviesId()}")
+                    Log.e("tests", "${provideApiService().getAllMoviesId()}")
+                    Log.e("tests", "${provideApiService().getAllGenreList()}")
                 }
             }
         }
