@@ -9,4 +9,5 @@ object Constants {
 
     const val GET_MOVIEID = "movie/changes"
     const val GET_GENRE = "genre/movie/list"
+    const val GET_MOVIES_DETAIL = "movie/{movie_id}"
 }
