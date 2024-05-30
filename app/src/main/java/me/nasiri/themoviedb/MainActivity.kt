@@ -10,16 +10,20 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import me.nasiri.core_network.MovieApiService
+import kotlinx.coroutines.launch
+import me.nasiri.core.domain.repository.MovieRepository
+import me.nasiri.core.until.d
 import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    // test
     @Inject
-    lateinit var apiService: MovieApiService
+    lateinit var repo: MovieRepository
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

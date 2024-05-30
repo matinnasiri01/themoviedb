@@ -9,7 +9,7 @@ data class MovieModel(
     val adult: Boolean? = null,
     val status: String? = null,
     val overview: String? = null,
-    val genres: List<Genre?>? = null,
+    val genres: List<GenreModel?>? = null,
     val releaseDate: String? = null,
 
     val backdropPath: String? = null,
@@ -19,11 +19,6 @@ data class MovieModel(
     val originCountry: List<String?>? = null,
     val spokenLanguages: List<SpokenLanguage?>? = null,
 ) {
-    data class Genre(
-        val id: Int?,
-        val name: String?,
-    )
-
     data class SpokenLanguage(
         val englishName: String?,
         val iso6391: String?,
