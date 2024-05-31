@@ -6,9 +6,6 @@ import me.nasiri.core_database.Constants.TABLE_GENRE
 
 @Entity(tableName = TABLE_GENRE)
 data class GenreModel(
-
-    @PrimaryKey
-    val id: Int? = null,
-
+    @PrimaryKey val id: Int? = null,
     val name: String? = null,
 )

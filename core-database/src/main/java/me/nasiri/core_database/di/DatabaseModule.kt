@@ -33,5 +33,4 @@ object DatabaseModule {
     @Singleton
     fun provideMoviesDao(database: CoreDatabase): MovieDao = database.mvDao
 
-
 }
