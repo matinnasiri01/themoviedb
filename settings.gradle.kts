@@ -23,3 +23,4 @@ rootProject.name = "themoviedb"
 include(":app")
 include(":core-network")
 include(":core")
+include(":core-database")

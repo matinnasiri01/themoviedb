@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "me.nasiri.core"
+    namespace = "me.nasiri.core_database"
     compileSdk = 34
 
     defaultConfig {
@@ -45,6 +45,5 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-    implementation(project(":core-network"))
-    implementation(project(":core-database"))
+
 }
