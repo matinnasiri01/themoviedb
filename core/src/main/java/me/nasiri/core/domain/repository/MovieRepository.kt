@@ -8,9 +8,18 @@ interface MovieRepository {
 
     suspend fun getGenre(): List<GenreModel>
 
-    // suspend fun getTrendMovies(/*todo set the type*/): List<TrendModel>
+    suspend fun getTrendMovies(/*todo set the type*/): List<TrendModel>
 
-    // suspend fun getMovieList(): List<MovieModel>
+    suspend fun getMovieList(): List<MovieModel>
 
-    // suspend fun getMovieDetailsById(mvID: Int): MovieModel
+    suspend fun getMovieDetailsById(mvID: Int): MovieModel
+
+
+    suspend fun fetchGenre()
+
+    suspend fun fetchTrendMovies()
+
+    suspend fun fetchMovies()
+
+
 }
