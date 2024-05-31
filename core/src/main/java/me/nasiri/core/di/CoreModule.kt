@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import me.nasiri.core.data.repository.MovieRepositoryImpl
 import me.nasiri.core.domain.repository.MovieRepository
+import me.nasiri.core_database.dao.MovieDao
 import me.nasiri.core_network.MovieApiService
 import javax.inject.Singleton
 
@@ -16,5 +17,7 @@ object CoreModule {
 
     @Provides
     @Singleton
-    fun provideRepository(remote: MovieApiService): MovieRepository = MovieRepositoryImpl(remote)
+    fun provideRepository(remote: MovieApiService, local: MovieDao): MovieRepository =
+        MovieRepositoryImpl(remote, local)
+
 }
