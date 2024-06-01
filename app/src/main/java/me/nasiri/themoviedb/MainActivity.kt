@@ -10,7 +10,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import me.nasiri.core.domain.repository.MovieRepository
 import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
@@ -25,7 +27,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        lifecycleScope.launch {
+            repo.fetchGenre()
+        }
         enableEdgeToEdge()
         setContent {
             ThemoviedbTheme {

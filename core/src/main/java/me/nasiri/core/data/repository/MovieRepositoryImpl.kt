@@ -28,7 +28,7 @@ class MovieRepositoryImpl(
     }
 
     override suspend fun fetchGenre() {
-
+        local.inGenre(listOf(me.nasiri.core_database.entity.GenreModel(1, "matin")))
     }
 
     override suspend fun fetchTrendMovies() {

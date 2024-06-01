@@ -1,8 +1,6 @@
 package me.nasiri.core_database.dao
 
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
@@ -23,8 +21,8 @@ interface MovieDao {
     fun getAllGenre(): Flow<List<GenreModel>>
 
 
-//    @Query("SELECT * FROM $TABLE_TREND")
-//    fun getAllTrend(): Flow<List<TrendModel>>
+    @Query("SELECT * FROM $TABLE_TREND")
+    fun getAllTrend(): Flow<List<TrendModel>>
 
 //    @Upsert
 //    suspend fun inMovies(list: List<MovieModel>)
@@ -32,7 +30,7 @@ interface MovieDao {
     @Upsert
     suspend fun inGenre(list: List<GenreModel>)
 
-//    @Upsert
-//    suspend fun inTrend(list: List<TrendModel>)
+    @Upsert
+    suspend fun inTrend(list: List<TrendModel>)
 
 }
