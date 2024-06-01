@@ -1,18 +1,19 @@
 package me.nasiri.core.domain.repository
 
-import me.nasiri.core.data.model.GenreModel
-import me.nasiri.core.data.model.MovieModel
-import me.nasiri.core.data.model.TrendModel
+import kotlinx.coroutines.flow.Flow
+import me.nasiri.core_database.entity.GenreModel
+import me.nasiri.core_database.entity.MovieModel
+import me.nasiri.core_database.entity.TrendModel
 
 interface MovieRepository {
 
-    suspend fun getGenre(): List<GenreModel>
+    suspend fun getGenre(): Flow<List<GenreModel>>
 
-    suspend fun getTrendMovies(/*todo set the type*/): List<TrendModel>
+    suspend fun getTrendMovies(/*todo set the type*/): Flow<List<TrendModel>>
 
-    suspend fun getMovieList(): List<MovieModel>
+    suspend fun getMovieList(): Flow<List<MovieModel>>
 
-    suspend fun getMovieDetailsById(mvID: Int): MovieModel
+    suspend fun getMovieDetailsById(mvID: Int): Flow<MovieModel>
 
 
     suspend fun fetchGenre()

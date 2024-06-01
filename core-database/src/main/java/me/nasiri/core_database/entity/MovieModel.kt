@@ -13,7 +13,7 @@ data class MovieModel(
     val adult: Boolean = false,
     val status: String? = null,
     val des: String? = null,
-    val genres: List<Genre?> = emptyList(),
+    val genres: List<Genre?>? = emptyList(),
     val releaseDate: String? = null,
     val backdropPath: String? = null,
     val posterPath: String? = null,

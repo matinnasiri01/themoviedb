@@ -8,12 +8,12 @@ import me.nasiri.core_database.entity.SpokenLanguage
 
 class Converters {
     @TypeConverter
-    fun fromGenreIds(genreIds: List<Int>): String {
+    fun fromGenreIds(genreIds: List<Int?>?): String {
         return Gson().toJson(genreIds)
     }
 
     @TypeConverter
-    fun toGenreIds(genreIdsString: String): List<Int> {
+    fun toGenreIds(genreIdsString: String): List<Int?>? {
         val listType = object : TypeToken<List<Int>>() {}.type
         return Gson().fromJson(genreIdsString, listType)
     }

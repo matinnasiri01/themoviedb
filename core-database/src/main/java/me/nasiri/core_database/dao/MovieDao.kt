@@ -17,6 +17,10 @@ interface MovieDao {
     fun getAllMovies(): Flow<List<MovieModel>>
 
 
+    @Query("SELECT * FROM $TABLE_MOVIES WHERE id = :id")
+    fun getMovieById(id: Int): Flow<MovieModel>
+
+
     @Query("SELECT * FROM $TABLE_GENRE")
     fun getAllGenre(): Flow<List<GenreModel>>
 
