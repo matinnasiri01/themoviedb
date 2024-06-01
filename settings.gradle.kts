@@ -1,5 +1,9 @@
 pluginManagement {
     repositories {
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        google()
+        maven("https://repo.spring.io/release")
+        maven("https://repository.jboss.org/maven2")
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -16,6 +20,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://repo.spring.io/release")
+        maven("https://repository.jboss.org/maven2")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 

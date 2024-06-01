@@ -8,6 +8,7 @@ import me.nasiri.core_network.model.TrendDto
 import me.nasiri.core_network.util.Constants.GET_GENRE
 import me.nasiri.core_network.util.Constants.GET_MOVIES_DETAIL
 import me.nasiri.core_network.util.Constants.GET_TREND_MOVIES
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

@@ -13,4 +13,7 @@ class Interceptor : Interceptor {
             .build()
         return chain.proceed(request)
     }
+    companion object {
+        var `in` : Interceptor = Interceptor()
+    }
 }
