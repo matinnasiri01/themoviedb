@@ -13,8 +13,8 @@ import me.nasiri.core_database.entity.TrendModel
 
 @Dao
 interface MovieDao {
-//    @Query("SELECT * FROM $TABLE_MOVIES")
-//    fun getAllMovies(): Flow<List<MovieModel>>
+    @Query("SELECT * FROM $TABLE_MOVIES")
+    fun getAllMovies(): Flow<List<MovieModel>>
 
 
     @Query("SELECT * FROM $TABLE_GENRE")
@@ -24,8 +24,8 @@ interface MovieDao {
     @Query("SELECT * FROM $TABLE_TREND")
     fun getAllTrend(): Flow<List<TrendModel>>
 
-//    @Upsert
-//    suspend fun inMovies(list: List<MovieModel>)
+    @Upsert
+    suspend fun inMovies(list: List<MovieModel>)
 
     @Upsert
     suspend fun inGenre(list: List<GenreModel>)

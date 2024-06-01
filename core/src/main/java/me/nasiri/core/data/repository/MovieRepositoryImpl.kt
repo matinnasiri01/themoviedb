@@ -5,6 +5,7 @@ import me.nasiri.core.data.model.MovieModel
 import me.nasiri.core.data.model.TrendModel
 import me.nasiri.core.domain.repository.MovieRepository
 import me.nasiri.core_database.dao.MovieDao
+import me.nasiri.core_database.entity.Genre
 import me.nasiri.core_network.MovieApiService
 
 class MovieRepositoryImpl(
@@ -36,6 +37,6 @@ class MovieRepositoryImpl(
     }
 
     override suspend fun fetchMovies() {
-
+        local.inMovies(listOf(me.nasiri.core_database.entity.MovieModel(12, genres = listOf(Genre(1,"bitch")))))
     }
 }

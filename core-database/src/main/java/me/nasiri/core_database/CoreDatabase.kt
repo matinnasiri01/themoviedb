@@ -11,7 +11,7 @@ import me.nasiri.core_database.entity.TrendModel
 
 @Database(
     entities = [
-       // MovieModel::class,
+        MovieModel::class,
         GenreModel::class,
         TrendModel::class,
     ],

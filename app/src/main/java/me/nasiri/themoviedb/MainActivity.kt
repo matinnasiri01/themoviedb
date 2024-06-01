@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
             repo.fetchGenre()
+            repo.fetchMovies()
         }
         enableEdgeToEdge()
         setContent {
