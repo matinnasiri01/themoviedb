@@ -5,15 +5,15 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import me.nasiri.core_database.dao.MovieDao
 import me.nasiri.core_database.converter.Converters
-import me.nasiri.core_database.entity.GenreModel
-import me.nasiri.core_database.entity.MovieModel
-import me.nasiri.core_database.entity.TrendModel
+import me.nasiri.core_database.entity.FavouriteEntity
+import me.nasiri.core_database.entity.GenreEntity
+import me.nasiri.core_database.entity.MovieEntity
 
 @Database(
     entities = [
-        MovieModel::class,
-        GenreModel::class,
-        TrendModel::class,
+        MovieEntity::class,
+        GenreEntity::class,
+        FavouriteEntity::class,
     ],
     version = 1,
     exportSchema = false
