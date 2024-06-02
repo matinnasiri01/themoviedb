@@ -14,5 +14,5 @@ data class MovieEntity(
     val backdropPath: String? = null,
     val posterPath: String? = null,
     val originalLanguage: String? = null,
-    val genres: List<Int>? = emptyList(),
+    val genres: List<Int> = emptyList(),
 )
