@@ -1,6 +1,6 @@
 package me.nasiri.core.data.model
 
-data class TrendModel(
+data class TrendCore(
     val id: Int?,
     val adult: Boolean?,
     val backdropPath: String?,

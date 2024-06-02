@@ -12,15 +12,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.nasiri.core.domain.repository.MovieRepository
-import me.nasiri.core.until.e
 import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
-import kotlin.system.measureTimeMillis
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -44,8 +41,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Button(onClick = {
                             runBlocking {
-                                e("Start")
-                                e("End in ${measureTimeMillis { repo.fetchMovies() }} Milis")
+                                repo.fetchMovies()
                             }
                         }) {
                             Text(text = "GET")

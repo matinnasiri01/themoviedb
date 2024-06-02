@@ -21,6 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "themoviedb"
 include(":app")
-include(":core-network")
 include(":core")
+include(":core-network")
 include(":core-database")
