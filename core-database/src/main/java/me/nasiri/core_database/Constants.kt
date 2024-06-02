@@ -6,6 +6,6 @@ object Constants {
 
     const val TABLE_MOVIES = "tbmovies"
     const val TABLE_GENRE = "tbgenre"
-    const val TABLE_TREND = "tbtrend"
+    const val TABLE_FAVOURITE = "tbfavourite"
 
 }

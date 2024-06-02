@@ -16,16 +16,12 @@ import androidx.compose.ui.unit.dp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import me.nasiri.core.until.e
-import me.nasiri.core_network.MovieApiService
 import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var api: MovieApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +37,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Button(onClick = {
                             runBlocking {
-                                val response = api.getAllGenreList()
-                                val data = api.getAllMovies()
-                                e("response: ${response}\ndata: $data")
+                                e("")
                                 Toast.makeText(this@MainActivity, "Oky", Toast.LENGTH_SHORT).show()
                             }
                         }) {
