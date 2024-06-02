@@ -3,7 +3,9 @@ package me.nasiri.core_network.model
 
 import com.squareup.moshi.Json
 
-data class TrendDto(
+data class MoviesListDto(
+    @Json(name = "dates")
+    val dates: Dates?,
     @Json(name = "page")
     val page: Int?,
     @Json(name = "results")
@@ -11,8 +13,15 @@ data class TrendDto(
     @Json(name = "total_pages")
     val totalPages: Int?,
     @Json(name = "total_results")
-    val totalResults: Int?
+    val totalResults: Int?,
 ) {
+    data class Dates(
+        @Json(name = "maximum")
+        val maximum: String?,
+        @Json(name = "minimum")
+        val minimum: String?,
+    )
+
     data class Result(
         @Json(name = "adult")
         val adult: Boolean?,
@@ -22,8 +31,6 @@ data class TrendDto(
         val genreIds: List<Int?>?,
         @Json(name = "id")
         val id: Int?,
-        @Json(name = "media_type")
-        val mediaType: String?,
         @Json(name = "original_language")
         val originalLanguage: String?,
         @Json(name = "original_title")
@@ -43,6 +50,6 @@ data class TrendDto(
         @Json(name = "vote_average")
         val voteAverage: Double?,
         @Json(name = "vote_count")
-        val voteCount: Int?
+        val voteCount: Int?,
     )
 }

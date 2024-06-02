@@ -3,8 +3,7 @@ package me.nasiri.core_database.converter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import me.nasiri.core_database.entity.Genre
-import me.nasiri.core_database.entity.SpokenLanguage
+import me.nasiri.core_database.entity.GenreModel
 
 class Converters {
     @TypeConverter
@@ -20,13 +19,13 @@ class Converters {
 
 
     @TypeConverter
-    fun fromGenreList(value: List<Genre?>?): String {
+    fun fromGenreList(value: List<GenreModel?>?): String {
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun toGenreList(value: String): List<Genre?>? {
-        val listType = object : TypeToken<List<Genre?>>() {}.type
+    fun toGenreList(value: String): List<GenreModel?>? {
+        val listType = object : TypeToken<List<GenreModel?>>() {}.type
         return Gson().fromJson(value, listType)
     }
 
@@ -38,17 +37,6 @@ class Converters {
     @TypeConverter
     fun toStringList(value: String): List<String?> {
         val listType = object : TypeToken<List<String?>>() {}.type
-        return Gson().fromJson(value, listType)
-    }
-
-    @TypeConverter
-    fun fromSpokenLanguageList(value: List<SpokenLanguage?>): String {
-        return Gson().toJson(value)
-    }
-
-    @TypeConverter
-    fun toSpokenLanguageList(value: String): List<SpokenLanguage?> {
-        val listType = object : TypeToken<List<SpokenLanguage?>>() {}.type
         return Gson().fromJson(value, listType)
     }
 
