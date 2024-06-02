@@ -15,11 +15,15 @@ interface MovieApiService {
     @GET(GET_GENRE)
     suspend fun getAllGenreList(): GenreDto
 
+
+
     @GET(GET_MOVIES)
     suspend fun getAllMovies(
         @Query("language") language: String = "en-US",
         @Query("page") page: Int = 1,
     ): MoviesListDto
+
+
 
     @GET(GET_MOVIE_DETAIL)
     suspend fun getMovieDetail(

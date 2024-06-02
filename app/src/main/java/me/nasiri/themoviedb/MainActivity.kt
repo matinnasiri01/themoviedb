@@ -15,13 +15,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
-import me.nasiri.core.until.e
+import me.nasiri.core.domain.repository.MovieRepository
 import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @Inject
+    lateinit var repo: MovieRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +40,11 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Button(onClick = {
                             runBlocking {
-                                e("")
-                                Toast.makeText(this@MainActivity, "Oky", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "${repo.getMovieGenre(listOf(878, 12, 28))}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }) {
                             Text(text = "GET")
