@@ -16,10 +16,13 @@ class GetHomeDataUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<Pair<List<MovieModel>, List<GenreModel>>>> = flow {
         emit(Resource.Loading())
-        val movies = repo.getMovie()
+
+        val movies = repo.getMovie().ifEmpty {
+            repo.fMovies()
+            repo.getMovie()
+        }
         val genres = repo.getGenre()
-        if (movies.isEmpty() || genres.isEmpty()) emit(Resource.Error(message = "No Data Found"))
-        else emit(Resource.Success(Pair(movies, genres)))
+        emit(Resource.Success(Pair(movies, genres)))
     }.catch {
         emit(Resource.Error(it.message ?: "Unknown Error"))
     }.flowOn(Dispatchers.IO)
