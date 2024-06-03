@@ -1,4 +1,4 @@
-package me.nasiri.themoviedb.ui.theme
+package me.nasiri.themoviedb.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
