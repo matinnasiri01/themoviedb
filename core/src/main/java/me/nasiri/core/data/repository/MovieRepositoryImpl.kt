@@ -2,11 +2,11 @@ package me.nasiri.core.data.repository
 
 
 import me.nasiri.core.data.mappers.format
+import me.nasiri.core.data.model.FavouriteModel
+import me.nasiri.core.data.model.GenreModel
+import me.nasiri.core.data.model.MovieModel
 import me.nasiri.core.domain.repository.MovieRepository
 import me.nasiri.core_database.dao.MovieDao
-import me.nasiri.core_database.entity.FavouriteEntity
-import me.nasiri.core_database.entity.GenreEntity
-import me.nasiri.core_database.entity.MovieEntity
 import me.nasiri.core_network.MovieApiService
 
 
@@ -22,30 +22,30 @@ class MovieRepositoryImpl(
         local.upsertGenre(remote.getAllGenreList().format())
     }
 
-    override suspend fun getMovieGenre(list: List<Int>): List<String> {
+    override suspend fun getMovieGenre(list: List<Int>): List<GenreModel> {
         return list.map { nId ->
-            local.getGenre().filter { it.id == nId }[0].name.toString()
+            getGenre().filter { it.id == nId }[0]
         }
     }
 
-    override suspend fun getGenre(): List<GenreEntity> {
-        return local.getGenre()
+    override suspend fun getGenre(): List<GenreModel> {
+        return local.getGenre().format()
     }
 
-    override suspend fun getMovie(): List<MovieEntity> {
-        return local.getMovies()
+    override suspend fun getMovie(): List<MovieModel> {
+        return local.getMovies().format { getMovieGenre(it) }
     }
 
-    override suspend fun addFavourite(item: FavouriteEntity) {
-        local.upsertFavourite(item)
+    override suspend fun addFavourite(item: FavouriteModel) {
+        local.upsertFavourite(item.format())
     }
 
-    override suspend fun removeFavourite(item: FavouriteEntity) {
-        local.removeFavourite(item)
+    override suspend fun removeFavourite(item: FavouriteModel) {
+        local.removeFavourite(item.format())
     }
 
-    override suspend fun getFavourite(): List<FavouriteEntity> {
-        return local.getFavourite()
+    override suspend fun getFavourite(): List<FavouriteModel> {
+        return local.getFavourite().map { it.format() }
     }
 
 }
