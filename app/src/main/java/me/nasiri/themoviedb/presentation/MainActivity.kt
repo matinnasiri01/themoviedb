@@ -1,19 +1,17 @@
-package me.nasiri.themoviedb
+package me.nasiri.themoviedb.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import dagger.hilt.android.AndroidEntryPoint
-import me.nasiri.themoviedb.ui.theme.ThemoviedbTheme
+import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
+import me.nasiri.home.HomeScreen
+import me.nasiri.home.HomeState
 
 
 @AndroidEntryPoint
@@ -26,16 +24,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             ThemoviedbTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(
-                        modifier = Modifier
+                    HomeScreen(
+                        state = HomeState(error = "Hello"), modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
-                            .padding(18.dp)
-                    ) {
-                        Button(onClick = {  }) {
-                            Text(text = "GET")
-                        }
-                    }
+                    )
                 }
             }
         }
