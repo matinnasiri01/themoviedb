@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import me.nasiri.core.domain.repository.MovieRepository
-import me.nasiri.home.components.CategoriesRow
+import me.nasiri.home.components.PreviewSlider
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
 
@@ -34,12 +34,7 @@ class MainActivity : ComponentActivity() {
                         Modifier.padding(innerPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        CategoriesRow(runBlocking {
-                            Pair(
-                                repository.getMovie(),
-                                repository.getGenre()
-                            )
-                        })
+                        PreviewSlider(list = runBlocking { repository.getMovie() })
                     }
                 }
             }
