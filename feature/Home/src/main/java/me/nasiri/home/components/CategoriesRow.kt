@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
@@ -44,12 +47,12 @@ fun CategoriesRow(data: Pair<List<MovieModel>, List<GenreModel>>, modifier: Modi
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 6.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+            .padding(horizontal = 6.dp)
     ) {
         Text(text = "Categories", fontSize = 30.sp, fontWeight = FontWeight.Bold)
-
+        Spacer(modifier = Modifier.height(16.dp))
         GenreChipsRow(genres, selectedGenres)
+        Spacer(modifier = Modifier.height(4.dp))
         LazyRow(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -84,7 +87,7 @@ fun GenreChipsRow(genres: List<GenreModel>, selectedGenres: MutableList<Int>) {
 fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .width(280.dp)
+            .width(240.dp)
             .padding(4.dp)
     ) {
         Box(modifier = Modifier.fillMaxWidth()) {
@@ -99,21 +102,26 @@ fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier) {
                 contentScale = ContentScale.FillWidth,
                 contentDescription = null
             )
-            Text(
-                modifier = Modifier.padding(18.dp),
-                text = item.releaseDate?.dropLast(6) ?: "Null",
-                fontSize = 18.sp,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-            )
-            IconButton(modifier = Modifier
-                .padding(18.dp)
-                .align(Alignment.TopEnd), onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Outlined.FavoriteBorder,
-                    contentDescription = null,
-                    tint = Color.White
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, top = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = item.releaseDate?.dropLast(6) ?: "Null",
+                    fontSize = 18.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
                 )
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        imageVector = Icons.Outlined.FavoriteBorder,
+                        contentDescription = null,
+                        tint = Color.White
+                    )
+                }
             }
         }
         Text(text = item.title ?: "Title", fontSize = 20.sp, fontWeight = FontWeight.Bold)
