@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import me.nasiri.core.domain.repository.MovieRepository
+import me.nasiri.explore.ExploreScreen
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
 
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         Modifier.padding(innerPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-
+                        ExploreScreen()
                     }
                 }
             }
