@@ -10,12 +10,18 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import me.nasiri.core.data.model.GenreModel
+import me.nasiri.core.data.model.MovieModel
+import me.nasiri.core.until.StateModel
 import me.nasiri.core_ui.error.ErrorMessage
 import me.nasiri.home.components.CategoriesRow
 import me.nasiri.home.components.PreviewSlider
 
 @Composable
-fun HomeScreen(state: HomeState, modifier: Modifier = Modifier) {
+fun HomeScreen(
+    state: StateModel<Pair<List<MovieModel>, List<GenreModel>>>,
+    modifier: Modifier = Modifier,
+) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -26,8 +32,8 @@ fun HomeScreen(state: HomeState, modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
             ) {
-                PreviewSlider(state.data.first)
-                CategoriesRow(data = state.data)
+                PreviewSlider(list = it.first)
+                CategoriesRow(data = it)
             }
         }
         state.error?.let { ErrorMessage(message = it, modifier = Modifier.align(Alignment.Center)) }

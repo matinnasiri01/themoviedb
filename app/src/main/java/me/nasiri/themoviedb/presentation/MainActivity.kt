@@ -8,13 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.runBlocking
 import me.nasiri.core.domain.repository.MovieRepository
-import me.nasiri.explore.ExploreScreen
-import me.nasiri.explore.ExploreState
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
 
@@ -31,11 +27,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             ThemoviedbTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(
-                        Modifier.padding(innerPadding),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        ExploreScreen(state = ExploreState(data = runBlocking { repository.getMovie() }))
+                    Column(Modifier.padding(innerPadding)) {
+
                     }
                 }
             }
