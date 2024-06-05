@@ -11,8 +11,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 import me.nasiri.core.domain.repository.MovieRepository
 import me.nasiri.explore.ExploreScreen
+import me.nasiri.explore.ExploreState
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 import javax.inject.Inject
 
@@ -33,7 +35,7 @@ class MainActivity : ComponentActivity() {
                         Modifier.padding(innerPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        ExploreScreen()
+                        ExploreScreen(state = ExploreState(data = runBlocking { repository.getMovie() }))
                     }
                 }
             }

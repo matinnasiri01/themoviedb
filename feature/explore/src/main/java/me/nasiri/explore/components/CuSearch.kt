@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusEvent
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
@@ -47,10 +46,8 @@ fun CuSearch(
         shape = RoundedCornerShape(10.dp),
         singleLine = true,
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = Color.Transparent,
-            unfocusedBorderColor = Color.Transparent,
-            focusedContainerColor = Color.LightGray,
-            unfocusedContainerColor = Color.LightGray,
+            focusedBorderColor = MaterialTheme.colorScheme.primary,
+            unfocusedBorderColor = MaterialTheme.colorScheme.primary,
             focusedTextColor = MaterialTheme.colorScheme.primary,
             unfocusedTextColor = MaterialTheme.colorScheme.primary
         ),
