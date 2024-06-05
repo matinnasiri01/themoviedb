@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,7 +34,7 @@ import me.nasiri.core.data.model.MovieModel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PreviewSlider(list: List<MovieModel>, modifier: Modifier = Modifier) {
-    val state = rememberPagerState { list.size }
+    val state = rememberPagerState(initialPage = 1) { list.size }
 
     LaunchedEffect(state) {
         while (true) {
@@ -44,19 +45,20 @@ fun PreviewSlider(list: List<MovieModel>, modifier: Modifier = Modifier) {
         }
     }
 
-    Column(modifier = modifier.fillMaxWidth()) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 6.dp)
+    ) {
+        Text(text = "Welcome!", fontSize = 30.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(16.dp))
         HorizontalPager(state = state, contentPadding = PaddingValues(horizontal = 45.dp)) { page ->
-            SliderItem(
-                item = list[page % list.size],
-                modifier = Modifier.graphicsLayer {
-                    val pageOffset = state.getOffsetFractionForPage(page).coerceIn(-1f, 1f)
-                    alpha = lerp(
-                        start = 0.4f,
-                        stop = 1f,
-                        fraction = 1f - kotlin.math.abs(pageOffset)
-                    )
-                }
-            )
+            SliderItem(item = list[page % list.size], modifier = Modifier.graphicsLayer {
+                val pageOffset = state.getOffsetFractionForPage(page).coerceIn(-1f, 1f)
+                alpha = lerp(
+                    start = 0.5f, stop = 1f, fraction = 1f - kotlin.math.abs(pageOffset)
+                )
+            })
         }
     }
 }
@@ -80,7 +82,8 @@ fun SliderItem(item: MovieModel, modifier: Modifier = Modifier) {
         Text(
             text = item.title!!,
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold, color = Color.White,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(8.dp)
@@ -88,7 +91,8 @@ fun SliderItem(item: MovieModel, modifier: Modifier = Modifier) {
         Text(
             text = item.releaseDate?.take(4)!!,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold, color = Color.White,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp)
