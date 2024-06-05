@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "me.nasiri.home"
+    namespace = "me.nasiri.core_ui"
     compileSdk = 34
 
     defaultConfig {
@@ -55,12 +53,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-    implementation(libs.coil.compose)
-
     implementation(project(":core"))
-    implementation(project(":core-ui"))
-
+    implementation(libs.coil.compose)
 }
