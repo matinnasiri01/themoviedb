@@ -3,9 +3,8 @@ package me.nasiri.core_database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import me.nasiri.core_database.dao.MovieDao
 import me.nasiri.core_database.converter.Converters
-import me.nasiri.core_database.entity.FavouriteEntity
+import me.nasiri.core_database.dao.MovieDao
 import me.nasiri.core_database.entity.GenreEntity
 import me.nasiri.core_database.entity.MovieEntity
 
@@ -13,7 +12,6 @@ import me.nasiri.core_database.entity.MovieEntity
     entities = [
         MovieEntity::class,
         GenreEntity::class,
-        FavouriteEntity::class,
     ],
     version = 1,
     exportSchema = false
