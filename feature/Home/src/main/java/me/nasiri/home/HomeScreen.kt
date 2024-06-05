@@ -18,14 +18,8 @@ import me.nasiri.home.components.CategoriesRow
 import me.nasiri.home.components.PreviewSlider
 
 @Composable
-fun HomeScreen(
-    state: StateModel<Pair<List<MovieModel>, List<GenreModel>>>,
-    modifier: Modifier = Modifier,
-) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-    ) {
+fun HomeScreen(state: StateModel<Pair<List<MovieModel>, List<GenreModel>>>) {
+    Box(modifier = Modifier.fillMaxSize()) {
         state.data?.let {
             Column(
                 modifier = Modifier

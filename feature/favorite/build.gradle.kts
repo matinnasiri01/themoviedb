@@ -58,8 +58,6 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
-    implementation(libs.coil.compose)
-
     implementation(project(":core"))
     implementation(project(":core-ui"))
 
