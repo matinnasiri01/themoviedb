@@ -29,9 +29,10 @@ dependencyResolutionManagement {
 rootProject.name = "themoviedb"
 include(":app")
 include(":core")
+include(":core-ui")
 include(":core-network")
 include(":core-database")
-include(":feature:Home")
-include(":feature:explore")
-include(":core-ui")
+include(":core-navigation")
 include(":feature:favorite")
+include(":feature:explore")
+include(":feature:Home")
