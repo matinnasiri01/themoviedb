@@ -75,4 +75,5 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":feature:Home"))
     implementation(project(":feature:explore"))
+    implementation(project(":feature:favorite"))
 }

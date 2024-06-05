@@ -1,5 +1,6 @@
 package me.nasiri.core.data.mappers
 
+import kotlinx.coroutines.runBlocking
 import me.nasiri.core.data.model.GenreModel
 import me.nasiri.core.data.model.MovieModel
 import me.nasiri.core.until.Constants.BASE_IMAGE
@@ -42,4 +43,18 @@ suspend fun List<MovieEntity>.format(convert: suspend (List<Int>) -> List<GenreM
             genres = convert(it.genres),
         )
     }
+}
+
+fun MovieEntity.format(convert: suspend (List<Int>) -> List<GenreModel>): MovieModel {
+    return MovieModel(
+        id = id,
+        adult = adult,
+        title = title,
+        overview = overview,
+        posterPath = posterPath,
+        backdropPath = backdropPath,
+        releaseDate = releaseDate,
+        originalLanguage = originalLanguage,
+        genres = runBlocking { convert(genres) },
+    )
 }

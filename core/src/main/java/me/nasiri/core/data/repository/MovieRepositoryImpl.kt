@@ -2,7 +2,6 @@ package me.nasiri.core.data.repository
 
 
 import me.nasiri.core.data.mappers.format
-import me.nasiri.core.data.model.FavouriteModel
 import me.nasiri.core.data.model.GenreModel
 import me.nasiri.core.data.model.MovieModel
 import me.nasiri.core.domain.repository.MovieRepository
@@ -28,6 +27,10 @@ class MovieRepositoryImpl(
         }
     }
 
+    override suspend fun getMovieById(id: Int): MovieModel {
+        return local.getMovieById(id = id).format { getMovieGenre(it) }
+    }
+
     override suspend fun getGenre(): List<GenreModel> {
         return local.getGenre().format()
     }
@@ -36,16 +39,14 @@ class MovieRepositoryImpl(
         return local.getMovies().format { getMovieGenre(it) }
     }
 
-    override suspend fun addFavourite(item: FavouriteModel) {
-        local.upsertFavourite(item.format())
+    override suspend fun updateFavourite(item: MovieModel) {
+        local.updateFavorite(item.id!!, item.isFavorite)
     }
 
-    override suspend fun removeFavourite(item: FavouriteModel) {
-        local.removeFavourite(item.format())
-    }
 
-    override suspend fun getFavourite(): List<FavouriteModel> {
-        return local.getFavourite().map { it.format() }
+
+    override suspend fun getFavourite(): List<MovieModel> {
+        return local.getFavoriteMovies().format { getMovieGenre(it) }
     }
 
 }

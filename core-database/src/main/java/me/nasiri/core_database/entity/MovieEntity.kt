@@ -8,6 +8,7 @@ import me.nasiri.core_database.Constants.TABLE_MOVIES
 data class MovieEntity(
     @PrimaryKey val id: Int? = null,
     val title: String? = null,
+    val isFavorite: Boolean = false,
     val overview: String? = null,
     val adult: Boolean = false,
     val releaseDate: String? = null,

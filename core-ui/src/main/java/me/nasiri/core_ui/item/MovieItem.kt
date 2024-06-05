@@ -1,4 +1,4 @@
-package me.nasiri.explore.components
+package me.nasiri.core_ui.item
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,7 +27,7 @@ import coil.compose.SubcomposeAsyncImage
 import me.nasiri.core.data.model.MovieModel
 
 @Composable
-fun MoviesList(data: MovieModel) {
+fun MovieItem(data: MovieModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -64,7 +65,7 @@ fun MoviesList(data: MovieModel) {
                 .padding(8.dp)
         ) {
             Icon(
-                imageVector = Icons.Default.Favorite,
+                imageVector = if (data.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                 tint = Color.Red,
                 contentDescription = "Like"
             )

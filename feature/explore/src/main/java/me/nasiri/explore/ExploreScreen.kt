@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import me.nasiri.core.data.model.MovieModel
 import me.nasiri.core.until.StateModel
 import me.nasiri.core_ui.error.ErrorMessage
+import me.nasiri.core_ui.item.MovieItem
 import me.nasiri.core_ui.search.CuSearch
-import me.nasiri.explore.components.MoviesList
 
 @Composable
 fun ExploreScreen(state: StateModel<List<MovieModel>>, modifier: Modifier = Modifier) {
@@ -37,7 +37,7 @@ fun ExploreScreen(state: StateModel<List<MovieModel>>, modifier: Modifier = Modi
                     CuSearch(value = search, onValueChange = { search = it })
                     Spacer(modifier = Modifier.height(16.dp))
                 }
-                items(it) { i -> MoviesList(data = i) }
+                items(it) { i -> MovieItem(data = i) }
             }
         }
         state.error?.let { ErrorMessage(message = it, modifier = Modifier.align(Alignment.Center)) }
