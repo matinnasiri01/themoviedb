@@ -10,8 +10,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import me.nasiri.core_ui.error.ErrorMessage
 import me.nasiri.home.components.CategoriesRow
-import me.nasiri.home.components.ErrorMessage
 import me.nasiri.home.components.PreviewSlider
 
 @Composable

@@ -16,8 +16,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import me.nasiri.explore.components.CuSearch
-import me.nasiri.explore.components.ErrorMessage
+import me.nasiri.core_ui.error.ErrorMessage
+import me.nasiri.core_ui.search.CuSearch
 import me.nasiri.explore.components.MoviesList
 
 @Composable

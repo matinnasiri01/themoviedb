@@ -1,4 +1,4 @@
-package me.nasiri.home.components
+package me.nasiri.core_ui.error
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,8 +24,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ErrorMessage(
-    modifier: Modifier = Modifier,
     message: String?,
+    modifier: Modifier = Modifier,
     grColor: Color = MaterialTheme.colorScheme.error,
 ) {
     Row(

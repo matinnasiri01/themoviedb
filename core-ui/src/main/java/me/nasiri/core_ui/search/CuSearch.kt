@@ -1,4 +1,4 @@
-package me.nasiri.explore.components
+package me.nasiri.core_ui.search
 
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.size
@@ -27,9 +27,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CuSearch(
-    modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
     onSearchClick: (String) -> Unit = { },
     onCloseClick: () -> Unit = { },
 ) {
