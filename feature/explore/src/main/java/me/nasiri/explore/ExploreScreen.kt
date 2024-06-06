@@ -16,16 +16,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import me.nasiri.core.data.model.MovieModel
-import me.nasiri.core.until.StateModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import me.nasiri.core_ui.error.ErrorMessage
 import me.nasiri.core_ui.item.MovieItem
 import me.nasiri.core_ui.search.CuSearch
 
 @Composable
-fun ExploreScreen(state: StateModel<List<MovieModel>>, modifier: Modifier = Modifier) {
+fun ExploreScreen(viewmodel: ExploreViewModel = hiltViewModel()) {
+    val state = viewmodel.state
     var search by rememberSaveable { mutableStateOf("") }
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()) {
 
         state.data?.let {
             LazyColumn(

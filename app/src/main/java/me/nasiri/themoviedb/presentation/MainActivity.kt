@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
+import me.nasiri.explore.ExploreScreen
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 
 
@@ -16,7 +17,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ThemoviedbTheme {
-                // Start Whit Navigation
+                // val navController = rememberNavController()
+                ExploreScreen()
             }
         }
     }

@@ -10,15 +10,14 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import me.nasiri.core.data.model.GenreModel
-import me.nasiri.core.data.model.MovieModel
-import me.nasiri.core.until.StateModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import me.nasiri.core_ui.error.ErrorMessage
 import me.nasiri.home.components.CategoriesRow
 import me.nasiri.home.components.PreviewSlider
 
 @Composable
-fun HomeScreen(state: StateModel<Pair<List<MovieModel>, List<GenreModel>>>) {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+    val state = viewModel.state
     Box(modifier = Modifier.fillMaxSize()) {
         state.data?.let {
             Column(
