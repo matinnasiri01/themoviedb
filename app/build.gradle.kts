@@ -72,6 +72,11 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    implementation(libs.navigation.compose)
+
     implementation(project(":core-navigation"))
+    implementation(project(":feature:Home"))
+    implementation(project(":feature:explore"))
+    implementation(project(":feature:favorite"))
 
 }
