@@ -17,7 +17,7 @@ object CoreModule {
 
     @Provides
     @Singleton
-    fun provideRepository(remote: MovieApiService, local: MovieDao): MovieRepositoryImpl =
+    fun provideRepository(remote: MovieApiService, local: MovieDao): MovieRepository =
         MovieRepositoryImpl(remote, local)
 
 }
