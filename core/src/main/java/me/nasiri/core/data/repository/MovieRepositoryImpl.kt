@@ -36,7 +36,7 @@ class MovieRepositoryImpl(
     }
 
     override suspend fun getMovie(): List<MovieModel> {
-        return local.getMovies().format { getMovieGenre(it) }
+        return local.getMovies().map { it -> it.format { getMovieGenre(it) } }
     }
 
     override suspend fun updateFavourite(item: MovieModel) {
@@ -44,9 +44,8 @@ class MovieRepositoryImpl(
     }
 
 
-
     override suspend fun getFavourite(): List<MovieModel> {
-        return local.getFavoriteMovies().format { getMovieGenre(it) }
+        return local.getFavoriteMovies().map { it -> it.format { getMovieGenre(it) } }
     }
 
 }

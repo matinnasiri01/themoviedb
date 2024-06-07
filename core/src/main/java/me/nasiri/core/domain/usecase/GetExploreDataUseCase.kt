@@ -15,7 +15,6 @@ class GetExploreDataUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<List<MovieModel>>> = flow {
         emit(Resource.Loading())
-        repo.fRefresh()
         emit(Resource.Success(repo.getMovie()))
     }.catch {
         emit(Resource.Error(it.message ?: "Unknown Error"))
