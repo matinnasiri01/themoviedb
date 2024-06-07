@@ -26,7 +26,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     .verticalScroll(rememberScrollState())
             ) {
                 PreviewSlider(list = it.first)
-                CategoriesRow(data = it)
+                CategoriesRow(data = it) { viewModel.likeItem(it) }
             }
         }
         state.error?.let { ErrorMessage(message = it, modifier = Modifier.align(Alignment.Center)) }

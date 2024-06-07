@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -41,7 +40,11 @@ import me.nasiri.core.data.model.MovieModel
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
-fun CategoriesRow(data: Pair<List<MovieModel>, List<GenreModel>>, modifier: Modifier = Modifier) {
+fun CategoriesRow(
+    data: Pair<List<MovieModel>, List<GenreModel>>,
+    modifier: Modifier = Modifier,
+    onClick: (Int) -> Unit,
+) {
     val (movies, genres) = data
     val selectedGenres = remember { mutableStateListOf<Int>() }
 
@@ -58,8 +61,10 @@ fun CategoriesRow(data: Pair<List<MovieModel>, List<GenreModel>>, modifier: Modi
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(movies) { movie ->
-                MoviesRow(item = movie)
+            items(if (selectedGenres.isNotEmpty()) movies.filter { model ->
+                selectedGenres.any { it in model.genres.map { id -> id.id } }
+            } else movies) { movie ->
+                MoviesRow(item = movie, onClick = onClick)
             }
         }
     }
@@ -68,24 +73,23 @@ fun CategoriesRow(data: Pair<List<MovieModel>, List<GenreModel>>, modifier: Modi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GenreChipsRow(genres: List<GenreModel>, selectedGenres: MutableList<Int>) {
+fun GenreChipsRow(genres: List<GenreModel>, list: MutableList<Int>) {
     LazyRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        itemsIndexed(genres) { index, genre ->
-            FilterChip(selected = selectedGenres.contains(index), onClick = {
-                if (selectedGenres.contains(index)) selectedGenres.remove(index)
-                else selectedGenres.add(index)
-
-            }, label = { Text(text = genre.name ?: "Null") })
+        items(genres) { genre ->
+            val id = genre.id
+            FilterChip(selected = id in list, onClick = {
+                if (id in list) list.remove(id) else list.add(id!!)
+            }, label = { Text(text = "${genre.name}") })
         }
     }
 }
 
 
 @Composable
-fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier) {
+fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier, onClick: (Int) -> Unit) {
     Column(
         modifier = modifier
             .width(240.dp)
@@ -116,11 +120,11 @@ fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier) {
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                 )
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { onClick(item.id!!) }) {
                     Icon(
                         imageVector = if (item.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = null,
-                        tint = Color.White
+                        tint = if (item.isFavorite) Color.Red else Color.White
                     )
                 }
             }

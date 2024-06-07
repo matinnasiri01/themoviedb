@@ -7,7 +7,7 @@ import me.nasiri.core.until.Constants.BASE_IMAGE
 import me.nasiri.core_database.entity.MovieEntity
 import me.nasiri.core_network.model.MoviesListDto
 
-fun MoviesListDto.format(): List<MovieEntity> {
+fun MoviesListDto.format(convert: suspend (Int?) -> Boolean?): List<MovieEntity> {
     return results?.mapNotNull {
         try {
             if (it == null) return@mapNotNull null
@@ -15,6 +15,7 @@ fun MoviesListDto.format(): List<MovieEntity> {
                 id = it.id,
                 adult = it.adult ?: false,
                 title = it.title,
+                isFavorite = runBlocking { convert(it.id) } ?: false,
                 overview = it.overview,
                 posterPath = BASE_IMAGE + it.posterPath,
                 backdropPath = BASE_IMAGE + it.backdropPath,

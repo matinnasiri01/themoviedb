@@ -66,7 +66,7 @@ fun MovieItem(data: MovieModel) {
         ) {
             Icon(
                 imageVector = if (data.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                tint = Color.Red,
+                tint = if (data.isFavorite) Color.Red else Color.Gray,
                 contentDescription = "Like"
             )
         }

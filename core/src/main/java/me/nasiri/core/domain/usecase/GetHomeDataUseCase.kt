@@ -16,7 +16,7 @@ class GetHomeDataUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<Pair<List<MovieModel>, List<GenreModel>>>> = flow {
         emit(Resource.Loading())
-        //repo.fRefresh()
+        repo.fRefresh()
         val movies = repo.getMovie()
         val genres = repo.getGenre()
         emit(Resource.Success(Pair(movies, genres)))

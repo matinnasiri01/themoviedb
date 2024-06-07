@@ -8,8 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import me.nasiri.core.data.model.GenreModel
 import me.nasiri.core.data.model.MovieModel
+import me.nasiri.core.domain.repository.MovieRepository
 import me.nasiri.core.domain.usecase.GetHomeDataUseCase
 import me.nasiri.core.until.Resource
 import me.nasiri.core.until.StateModel
@@ -18,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getUseCase: GetHomeDataUseCase,
+    private val repo: MovieRepository,
 ) : ViewModel() {
     var state by mutableStateOf(StateModel<Pair<List<MovieModel>, List<GenreModel>>>())
         private set
@@ -37,5 +40,12 @@ class HomeViewModel @Inject constructor(
                 is Resource.Loading -> state.copy(isLoading = true)
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun likeItem(id: Int) {
+        viewModelScope.launch {
+            val movie = repo.getMovieById(id)
+            repo.updateFavourite(movie.copy(isFavorite = !movie.isFavorite))
+        }
     }
 }

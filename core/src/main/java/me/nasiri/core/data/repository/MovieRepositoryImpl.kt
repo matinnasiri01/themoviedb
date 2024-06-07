@@ -14,7 +14,7 @@ class MovieRepositoryImpl(
     private val local: MovieDao,
 ) : MovieRepository {
     override suspend fun fMovies() {
-        local.upsertMovies(remote.getAllMovies(page = 1).format())
+        local.upsertMovies(remote.getAllMovies(page = 1).format { getMovieById(it!!).isFavorite })
     }
 
     override suspend fun fGenre() {

@@ -1,6 +1,8 @@
 package me.nasiri.core_database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import me.nasiri.core_database.Constants.TABLE_GENRE
@@ -27,7 +29,7 @@ interface MovieDao {
     @Query("SELECT * FROM $TABLE_GENRE")
     suspend fun getGenre(): List<GenreEntity>
 
-    @Upsert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertMovies(list: List<MovieEntity>)
 
     @Upsert
