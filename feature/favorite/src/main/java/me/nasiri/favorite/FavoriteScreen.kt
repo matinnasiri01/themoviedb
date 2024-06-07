@@ -33,7 +33,7 @@ fun FavoriteScreen(viewModel: FavoriteViewModel = hiltViewModel()) {
             val data = it.collectAsState(initial = emptyList()).value
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 item { Text(text = "Favorite", fontSize = 30.sp, fontWeight = FontWeight.Bold) }
-                if (data.isNotEmpty()) items(data) { i -> MovieItem(i) }
+                if (data.isNotEmpty()) items(data) { i -> MovieItem(data = i, onLikeClick = {id->viewModel.likeItem(id)}) }
                 else item { Text(text = "You didn't add anything") }
             }
         }

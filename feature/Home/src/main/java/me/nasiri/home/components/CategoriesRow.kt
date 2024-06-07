@@ -103,10 +103,11 @@ fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier, onClick: (Int) ->
                 modifier = Modifier
                     .align(Alignment.Center)
                     .fillMaxWidth()
+                    .height(320.dp)
                     .clip(RoundedCornerShape(16.dp)),
                 model = item.posterPath,
                 loading = { CircularProgressIndicator(modifier = Modifier.align(Alignment.Center)) },
-                contentScale = ContentScale.FillWidth,
+                contentScale = ContentScale.Crop,
                 contentDescription = null
             )
             Row(
@@ -131,6 +132,6 @@ fun MoviesRow(item: MovieModel, modifier: Modifier = Modifier, onClick: (Int) ->
                 }
             }
         }
-        Text(text = item.title ?: "Title", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Text(text = "${item.title}", fontSize = 20.sp, fontWeight = FontWeight.Bold)
     }
 }

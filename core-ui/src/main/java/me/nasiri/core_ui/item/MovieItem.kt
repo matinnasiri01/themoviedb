@@ -27,7 +27,7 @@ import coil.compose.SubcomposeAsyncImage
 import me.nasiri.core.data.model.MovieModel
 
 @Composable
-fun MovieItem(data: MovieModel) {
+fun MovieItem(data: MovieModel, onLikeClick: (Int) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -59,7 +59,7 @@ fun MovieItem(data: MovieModel) {
             }
         }
         IconButton(
-            onClick = { /*TODO*/ },
+            onClick = { onLikeClick(data.id!!) },
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp)

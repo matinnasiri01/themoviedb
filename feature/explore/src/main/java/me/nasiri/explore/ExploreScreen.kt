@@ -23,8 +23,8 @@ import me.nasiri.core_ui.item.MovieItem
 import me.nasiri.core_ui.search.CuSearch
 
 @Composable
-fun ExploreScreen(viewmodel: ExploreViewModel = hiltViewModel()) {
-    val state = viewmodel.state
+fun ExploreScreen(viewModel: ExploreViewModel = hiltViewModel()) {
+    val state = viewModel.state
     var search by rememberSaveable { mutableStateOf("") }
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -36,10 +36,17 @@ fun ExploreScreen(viewmodel: ExploreViewModel = hiltViewModel()) {
             ) {
                 item {
                     Spacer(modifier = Modifier.height(10.dp))
-                    CuSearch(value = search, onValueChange = { search = it })
+                    CuSearch(
+                        value = search,
+                        onValueChange = { search = it },
+                        onCloseClick = { search = "" })
                     Spacer(modifier = Modifier.height(16.dp))
                 }
-                items(data) { i -> MovieItem(data = i) }
+                items(data.filter { if (search.isNotBlank()) it.title!!.any { it in search.toCharArray() } else true }) { i ->
+                    MovieItem(
+                        data = i,
+                        onLikeClick = { id -> viewModel.likeItem(id) })
+                }
             }
         }
         state.error?.let { ErrorMessage(message = it, modifier = Modifier.align(Alignment.Center)) }
