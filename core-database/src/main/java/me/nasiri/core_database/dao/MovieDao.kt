@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
 import me.nasiri.core_database.Constants.TABLE_GENRE
 import me.nasiri.core_database.Constants.TABLE_MOVIES
 import me.nasiri.core_database.entity.GenreEntity
@@ -15,7 +16,7 @@ interface MovieDao {
 
 
     @Query("SELECT * FROM $TABLE_MOVIES WHERE isFavorite = 1")
-    suspend fun getFavoriteMovies(): List<MovieEntity>
+    fun getFavoriteMovies(): Flow<List<MovieEntity>>
 
 
     @Query("SELECT * FROM $TABLE_MOVIES")

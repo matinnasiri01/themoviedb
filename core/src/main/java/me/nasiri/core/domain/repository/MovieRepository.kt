@@ -1,5 +1,6 @@
 package me.nasiri.core.domain.repository
 
+import kotlinx.coroutines.flow.Flow
 import me.nasiri.core.data.model.GenreModel
 import me.nasiri.core.data.model.MovieModel
 
@@ -25,6 +26,6 @@ interface MovieRepository {
 
     // Favourite
     suspend fun updateFavourite(item: MovieModel)
-    suspend fun getFavourite(): List<MovieModel>
+    suspend fun getFavourite(): Flow<List<MovieModel>>
 
 }

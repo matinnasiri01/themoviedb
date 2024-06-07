@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -29,9 +30,10 @@ fun FavoriteScreen(viewModel: FavoriteViewModel = hiltViewModel()) {
     ) {
 
         state.data?.let {
+            val data = it.collectAsState(initial = emptyList()).value
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 item { Text(text = "Favorite", fontSize = 30.sp, fontWeight = FontWeight.Bold) }
-                if (it.isNotEmpty()) items(it) { i -> MovieItem(i) }
+                if (data.isNotEmpty()) items(data) { i -> MovieItem(i) }
                 else item { Text(text = "You didn't add anything") }
             }
         }

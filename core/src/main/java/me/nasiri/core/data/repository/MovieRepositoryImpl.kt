@@ -1,6 +1,8 @@
 package me.nasiri.core.data.repository
 
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import me.nasiri.core.data.mappers.format
 import me.nasiri.core.data.model.GenreModel
 import me.nasiri.core.data.model.MovieModel
@@ -44,9 +46,9 @@ class MovieRepositoryImpl(
     }
 
 
-    override suspend fun getFavourite(): List<MovieModel> {
-        return local.getFavoriteMovies().map { it -> it.format { getMovieGenre(it) } }
+    override suspend fun getFavourite(): Flow<List<MovieModel>> {
+        return local.getFavoriteMovies().map { l -> l.map { i -> i.format { getMovieGenre(it) } } }
     }
-
 }
+
 
