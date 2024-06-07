@@ -29,9 +29,9 @@ class FavoriteViewModel @Inject constructor(
     private fun getData() {
         getUseCase().onEach { result ->
             state = when (result) {
-                is Resource.Success -> state.copy(data = result.data)
+                is Resource.Success -> state.copy(data = result.data, isLoading = false)
 
-                is Resource.Error -> state.copy(error = result.message)
+                is Resource.Error -> state.copy(error = result.message, isLoading = false)
 
                 is Resource.Loading -> state.copy(isLoading = true)
             }

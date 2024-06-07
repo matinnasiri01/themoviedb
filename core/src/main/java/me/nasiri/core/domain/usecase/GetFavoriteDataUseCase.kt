@@ -15,6 +15,7 @@ class GetFavoriteDataUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<List<MovieModel>>> = flow {
         emit(Resource.Loading())
+        repo.fRefresh()
         emit(Resource.Success(repo.getFavourite()))
     }.catch {
         emit(Resource.Error(it.message ?: "Unknown Error"))
