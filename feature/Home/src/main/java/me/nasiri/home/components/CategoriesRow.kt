@@ -23,6 +23,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
+import kotlinx.coroutines.flow.Flow
 import me.nasiri.core.data.model.GenreModel
 import me.nasiri.core.data.model.MovieModel
 
@@ -41,13 +43,13 @@ import me.nasiri.core.data.model.MovieModel
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun CategoriesRow(
-    data: Pair<List<MovieModel>, List<GenreModel>>,
+    data: Pair<Flow<List<MovieModel>>, List<GenreModel>>,
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit,
 ) {
     val (movies, genres) = data
+    val movieList = movies.collectAsState(initial = emptyList()).value
     val selectedGenres = remember { mutableStateListOf<Int>() }
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -61,9 +63,9 @@ fun CategoriesRow(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(if (selectedGenres.isNotEmpty()) movies.filter { model ->
+            items(if (selectedGenres.isNotEmpty()) movieList.filter { model ->
                 selectedGenres.any { it in model.genres.map { id -> id.id } }
-            } else movies) { movie ->
+            } else movieList) { movie ->
                 MoviesRow(item = movie, onClick = onClick)
             }
         }

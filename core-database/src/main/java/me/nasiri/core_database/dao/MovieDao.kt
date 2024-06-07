@@ -20,7 +20,7 @@ interface MovieDao {
 
 
     @Query("SELECT * FROM $TABLE_MOVIES")
-    suspend fun getMovies(): List<MovieEntity>
+    fun getMovies(): Flow<List<MovieEntity>>
 
 
     @Query("SELECT * FROM $TABLE_MOVIES WHERE id = :id")

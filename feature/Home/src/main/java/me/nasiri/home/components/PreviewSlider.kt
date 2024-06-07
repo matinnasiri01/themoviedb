@@ -15,7 +15,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,23 +27,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import coil.compose.AsyncImage
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.yield
+import kotlinx.coroutines.flow.Flow
 import me.nasiri.core.data.model.MovieModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun PreviewSlider(list: List<MovieModel>, modifier: Modifier = Modifier) {
-    val state = rememberPagerState(initialPage = 1) { list.size }
+fun PreviewSlider(list: Flow<List<MovieModel>>, modifier: Modifier = Modifier) {
+    val data = list.collectAsState(initial = emptyList()).value
+    val state = rememberPagerState(initialPage = 1) { data.size }
 
-    LaunchedEffect(state) {
+    /*LaunchedEffect(state) {
         while (true) {
             yield()
             delay(3000)
-            val nextPage = (state.currentPage + 1) % list.size
+            val nextPage = (state.currentPage + 1) % data.size
             state.animateScrollToPage(nextPage)
         }
-    }
+    }*/
 
     Column(
         modifier = modifier
@@ -53,7 +53,7 @@ fun PreviewSlider(list: List<MovieModel>, modifier: Modifier = Modifier) {
         Text(text = "Welcome!", fontSize = 30.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
         HorizontalPager(state = state, contentPadding = PaddingValues(horizontal = 45.dp)) { page ->
-            SliderItem(item = list[page % list.size], modifier = Modifier.graphicsLayer {
+            SliderItem(item = data[page % data.size], modifier = Modifier.graphicsLayer {
                 val pageOffset = state.getOffsetFractionForPage(page).coerceIn(-1f, 1f)
                 alpha = lerp(
                     start = 0.5f, stop = 1f, fraction = 1f - kotlin.math.abs(pageOffset)

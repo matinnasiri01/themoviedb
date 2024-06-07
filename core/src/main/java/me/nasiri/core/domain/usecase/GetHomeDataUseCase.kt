@@ -14,7 +14,7 @@ import javax.inject.Inject
 class GetHomeDataUseCase @Inject constructor(
     private val repo: MovieRepository,
 ) {
-    operator fun invoke(): Flow<Resource<Pair<List<MovieModel>, List<GenreModel>>>> = flow {
+    operator fun invoke(): Flow<Resource<Pair<Flow<List<MovieModel>>, List<GenreModel>>>> = flow {
         emit(Resource.Loading())
         repo.fRefresh()
         val movies = repo.getMovie()

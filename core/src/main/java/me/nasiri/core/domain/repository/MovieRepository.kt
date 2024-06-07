@@ -21,7 +21,7 @@ interface MovieRepository {
 
     suspend fun getGenre(): List<GenreModel>
 
-    suspend fun getMovie(): List<MovieModel>
+    suspend fun getMovie(): Flow<List<MovieModel>>
 
 
     // Favourite

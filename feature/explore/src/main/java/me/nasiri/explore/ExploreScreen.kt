@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -28,6 +29,7 @@ fun ExploreScreen(viewmodel: ExploreViewModel = hiltViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
 
         state.data?.let {
+            val data = it.collectAsState(initial = emptyList()).value
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -37,7 +39,7 @@ fun ExploreScreen(viewmodel: ExploreViewModel = hiltViewModel()) {
                     CuSearch(value = search, onValueChange = { search = it })
                     Spacer(modifier = Modifier.height(16.dp))
                 }
-                items(it) { i -> MovieItem(data = i) }
+                items(data) { i -> MovieItem(data = i) }
             }
         }
         state.error?.let { ErrorMessage(message = it, modifier = Modifier.align(Alignment.Center)) }

@@ -13,7 +13,7 @@ import javax.inject.Inject
 class GetExploreDataUseCase @Inject constructor(
     private val repo: MovieRepository,
 ) {
-    operator fun invoke(): Flow<Resource<List<MovieModel>>> = flow {
+    operator fun invoke(): Flow<Resource<Flow<List<MovieModel>>>> = flow {
         emit(Resource.Loading())
         emit(Resource.Success(repo.getMovie()))
     }.catch {

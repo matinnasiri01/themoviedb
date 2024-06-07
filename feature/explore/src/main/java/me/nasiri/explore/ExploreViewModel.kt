@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import me.nasiri.core.data.model.MovieModel
@@ -18,7 +19,7 @@ import javax.inject.Inject
 class ExploreViewModel @Inject constructor(
     private val getUseCase: GetExploreDataUseCase,
 ) : ViewModel() {
-    var state by mutableStateOf(StateModel<List<MovieModel>>())
+    var state by mutableStateOf(StateModel<Flow<List<MovieModel>>>())
         private set
 
 
