@@ -6,11 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import me.nasiri.core_navigation.AppNavGraph
-import me.nasiri.core_navigation.MainNavigation
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 
 
@@ -22,10 +20,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ThemoviedbTheme {
-                val navController = rememberNavController()
-                Scaffold(bottomBar = { MainNavigation(navController) }) { innerPadding ->
-                    AppNavGraph(
-                        navController = navController,
+                Scaffold{ innerPadding ->
+                    Text(
+                        text = "salam",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
