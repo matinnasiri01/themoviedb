@@ -73,5 +73,6 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
     implementation(project(":core:database"))
+    implementation(project(":core:network"))
 
 }
