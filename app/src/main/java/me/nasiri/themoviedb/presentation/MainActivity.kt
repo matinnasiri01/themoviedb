@@ -18,11 +18,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             ThemoviedbTheme {
-                Scaffold{ innerPadding ->
+                Scaffold { innerPadding ->
                     Text(
-                        text = "salam",
+                        text = "Hello",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
