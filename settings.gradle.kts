@@ -30,3 +30,4 @@ rootProject.name = "themoviedb"
 include(":app")
 include(":core:database")
 include(":core:network")
+include(":data")

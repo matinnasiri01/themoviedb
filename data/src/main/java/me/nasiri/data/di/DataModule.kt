@@ -1,0 +1,21 @@
+package me.nasiri.data.di
+
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import me.nasiri.data.datasources.MovieDataSources
+import me.nasiri.data.datasources.remote.RemoteDatasource
+import me.nasiri.network.MovieApiService
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataModule {
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(api: MovieApiService): MovieDataSources.Remote =
+        RemoteDatasource(api = api)
+
+}

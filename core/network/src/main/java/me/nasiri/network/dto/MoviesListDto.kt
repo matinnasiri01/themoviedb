@@ -1,4 +1,4 @@
-package me.nasiri.core_network.model
+package me.nasiri.network.dto
 
 
 import com.squareup.moshi.Json

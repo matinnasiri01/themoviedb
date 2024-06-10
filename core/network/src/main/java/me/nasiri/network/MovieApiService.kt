@@ -1,7 +1,7 @@
 package me.nasiri.network
 
-import me.nasiri.core_network.model.MoviesListDto
 import me.nasiri.network.dto.GenreDto
+import me.nasiri.network.dto.MoviesListDto
 import me.nasiri.network.util.Constants.GET_GENRE
 import me.nasiri.network.util.Constants.GET_MOVIES
 import retrofit2.http.GET
