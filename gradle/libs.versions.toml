@@ -56,8 +56,8 @@ converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", 
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
 # Database
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 # Gson
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 # Coil

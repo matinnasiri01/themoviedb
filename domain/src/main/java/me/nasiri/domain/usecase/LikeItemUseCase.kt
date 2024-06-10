@@ -2,7 +2,7 @@ package me.nasiri.domain.usecase
 
 import me.nasiri.domain.entities.Movie
 import me.nasiri.domain.repository.MovieRepository
-import me.nasiri.domain.until.runOtherThread
+import me.nasiri.domain.util.runOtherThread
 import javax.inject.Inject
 import javax.inject.Singleton
 

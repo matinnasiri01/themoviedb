@@ -10,9 +10,10 @@ interface MovieRepository {
     suspend fun fetchGenres()
 
     fun getMovies(): Flow<List<Movie>>
-    fun getGenres(): Flow<List<Genre>>
+    fun getMovieById(movieId: Int): Movie
+    fun getGenres(): List<Genre>
     fun getFavorites(): Flow<List<Movie>>
 
-    suspend fun updateFavourite(movie: Movie)
+    suspend fun updateFavourite(movieId: Int)
 
 }
