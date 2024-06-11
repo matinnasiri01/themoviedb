@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "me.nasiri.data"
+    namespace = "me.nasiri.domain"
     compileSdk = 34
 
     defaultConfig {
@@ -42,12 +42,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
+    
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-
-    implementation(project(":domain"))
-    implementation(project(":core:database"))
-    implementation(project(":core:network"))
 
 }

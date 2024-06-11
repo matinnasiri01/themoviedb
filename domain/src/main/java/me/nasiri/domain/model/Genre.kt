@@ -1,3 +1,3 @@
-package me.nasiri.data.model
+package me.nasiri.domain.model
 
 data class Genre(val id: Int, val name: String)

@@ -1,41 +1,42 @@
 package me.nasiri.data.mapper
 
-import me.nasiri.data.model.Movie
 import me.nasiri.database.entitys.GenreEntity
 import me.nasiri.database.entitys.MovieEntity
+import me.nasiri.domain.model.Movie
+import me.nasiri.domain.util.Constants.IMAGE_URI
 import me.nasiri.network.dto.MoviesListDto
 
 
-fun MoviesListDto.convert(
-    checkFavorite: (Int) -> Boolean?,
-    checkGenre: (List<Int>) -> List<GenreEntity>?,
+suspend fun MoviesListDto.convert(
+    favourites: suspend (Int) -> Boolean?,
+    genres: suspend (List<Int>) -> List<GenreEntity>?,
 ): List<MovieEntity> {
     return results?.mapNotNull {
-        it ?: return@mapNotNull null
+        if (it == null) return@mapNotNull null
         MovieEntity(
             id = it.id,
             adult = it.adult ?: false,
-            isFavorite = checkFavorite(it.id!!) ?: false,
             title = it.title,
             overview = it.overview,
             releaseDate = it.releaseDate,
-            posterPath = it.posterPath,
-            backdropPath = it.backdropPath,
-            genres = checkGenre(it.genreIds?.filterNotNull()!!) ?: emptyList()
+            posterPath = IMAGE_URI + it.posterPath,
+            backdropPath = IMAGE_URI + it.backdropPath,
+            genres = genres(it.genreIds?.filterNotNull()!!) ?: emptyList(),
+            isFavorite = favourites(it.id!!) ?: false,
         )
     }!!
 }
 
 fun MovieEntity.convert(): Movie {
     return Movie(
-        id = id!!,
+        id = id ?: 0,
         adult = adult,
         isFavorite = isFavorite,
-        title = title!!,
-        overview = overview!!,
-        releaseDate = releaseDate!!,
-        posterPath = posterPath!!,
-        backdropPath = backdropPath!!,
+        title = title ?: "",
+        overview = overview ?: "",
+        releaseDate = releaseDate ?: "",
+        posterPath = posterPath ?: "",
+        backdropPath = backdropPath ?: "",
         genres = genres.convert()
     )
 }

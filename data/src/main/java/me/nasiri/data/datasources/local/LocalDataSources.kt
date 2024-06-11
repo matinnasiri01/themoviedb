@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import me.nasiri.data.datasources.MovieDataSources
 import me.nasiri.data.mapper.convert
-import me.nasiri.data.model.Genre
-import me.nasiri.data.model.Movie
 import me.nasiri.database.MovieDao
 import me.nasiri.database.entitys.GenreEntity
 import me.nasiri.database.entitys.MovieEntity
+import me.nasiri.domain.model.Genre
+import me.nasiri.domain.model.Movie
 import javax.inject.Inject
 
 class LocalDataSources @Inject constructor(private val dao: MovieDao) : MovieDataSources.Local {
@@ -17,8 +17,8 @@ class LocalDataSources @Inject constructor(private val dao: MovieDao) : MovieDat
         return dao.getMovies().map { it.convert() }
     }
 
-    override fun getMovie(id: Int): Movie {
-        return runBlocking { dao.getMovieById(id).convert() }
+    override suspend fun getMovie(id: Int): Movie? {
+        return dao.getMovieById(id)?.convert()
     }
 
     override fun getGenres(): List<Genre> = runBlocking { dao.getGenre().convert() }

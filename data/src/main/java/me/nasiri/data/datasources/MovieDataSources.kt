@@ -1,18 +1,17 @@
 package me.nasiri.data.datasources
 
 import kotlinx.coroutines.flow.Flow
-import me.nasiri.data.model.Genre
-import me.nasiri.data.model.Movie
 import me.nasiri.database.entitys.GenreEntity
 import me.nasiri.database.entitys.MovieEntity
+import me.nasiri.domain.model.Genre
+import me.nasiri.domain.model.Movie
 
 interface MovieDataSources {
 
     interface Remote {
         suspend fun getMovies(
-            page: Int = 1,
-            checkFavorite: (Int) -> Boolean?,
-            checkGenre: (List<Int>) -> List<GenreEntity>?,
+            page: Int, cFavourites: suspend (Int) -> Boolean?,
+            genres: suspend (List<Int>) -> List<GenreEntity>?,
         ): List<MovieEntity>
 
         suspend fun getGenre(): List<GenreEntity>
@@ -20,7 +19,7 @@ interface MovieDataSources {
 
     interface Local {
         fun getMovies(): Flow<List<Movie>>
-        fun getMovie(id: Int): Movie
+        suspend fun getMovie(id: Int): Movie?
         fun getGenres(): List<Genre>
         fun getFavourites(): Flow<List<Movie>>
 

@@ -12,9 +12,10 @@ class RemoteDatasource @Inject constructor(private val api: MovieApiService) :
 
     override suspend fun getMovies(
         page: Int,
-        checkFavorite: (Int) -> Boolean?,
-        checkGenre: (List<Int>) -> List<GenreEntity>?,
-    ): List<MovieEntity> = api.getAllMovies(page = page).convert(checkFavorite, checkGenre)
+        cFavourites: suspend (Int) -> Boolean?,
+        genres: suspend (List<Int>) -> List<GenreEntity>?,
+    ): List<MovieEntity> =
+        api.getAllMovies(page = page).convert(favourites = cFavourites, genres = genres)
 
 
     override suspend fun getGenre(): List<GenreEntity> = api.getAllGenreList().convert()
