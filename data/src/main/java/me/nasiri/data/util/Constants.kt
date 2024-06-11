@@ -1,4 +1,4 @@
-package me.nasiri.domain.util
+package me.nasiri.data.util
 
 object Constants {
 

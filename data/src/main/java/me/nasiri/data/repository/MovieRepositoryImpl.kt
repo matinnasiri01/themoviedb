@@ -36,7 +36,8 @@ class MovieRepositoryImpl @Inject constructor(
         local.insertGenres(remote.getGenre())
     }
 
-    override suspend fun updateFaivouriteMovies(movie: Movie) {
-        local.updateMovie(movie)
+    override suspend fun updateFaivouriteMovies(id: Int) {
+        val newMovie = getMovie(id) ?: return
+        local.updateMovie(newMovie.copy(isFavorite = !newMovie.isFavorite))
     }
 }

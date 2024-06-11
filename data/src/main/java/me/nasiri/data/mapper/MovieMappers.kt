@@ -1,9 +1,9 @@
 package me.nasiri.data.mapper
 
+import me.nasiri.data.util.Constants.IMAGE_URI
 import me.nasiri.database.entitys.GenreEntity
 import me.nasiri.database.entitys.MovieEntity
 import me.nasiri.domain.model.Movie
-import me.nasiri.domain.util.Constants.IMAGE_URI
 import me.nasiri.network.dto.MoviesListDto
 
 

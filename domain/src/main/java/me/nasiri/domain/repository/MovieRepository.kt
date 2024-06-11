@@ -13,6 +13,6 @@ interface MovieRepository {
 
     suspend fun fetchMovies(page: Int = 1)
     suspend fun fetchGenres()
-    suspend fun updateFaivouriteMovies(movie: Movie)
+    suspend fun updateFaivouriteMovies(id: Int)
 
 }
