@@ -26,8 +26,7 @@ gson = "2.10.1"
 coil = "2.6.0"
 # Navigation
 navigation = "2.7.7"
-# FPs
-arrow = "1.1.5"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,8 +63,6 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 # Navigation
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
-# FPs
-arrow-core =  { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
 
 
 [plugins]
