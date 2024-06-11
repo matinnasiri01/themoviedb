@@ -2,7 +2,6 @@ package me.nasiri.database.entitys
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import me.nasiri.database.Genre
 import me.nasiri.database.util.Constants.TABLE_MOVIES
 
 @Entity(tableName = TABLE_MOVIES)
@@ -15,5 +14,5 @@ data class MovieEntity(
     val releaseDate: String? = null,
     val posterPath: String? = null,
     val backdropPath: String? = null,
-    val genres: List<Genre> = emptyList(),
+    val genres: List<GenreEntity> = emptyList(),
 )

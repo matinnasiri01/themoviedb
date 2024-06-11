@@ -51,5 +51,5 @@ dependencies {
     ksp(libs.room.compiler)
 
     implementation(libs.gson)
-    
+
 }

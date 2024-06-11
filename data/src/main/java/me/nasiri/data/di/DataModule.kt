@@ -5,7 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import me.nasiri.data.datasources.MovieDataSources
+import me.nasiri.data.datasources.local.LocalDataSources
 import me.nasiri.data.datasources.remote.RemoteDatasource
+import me.nasiri.database.MovieDao
 import me.nasiri.network.MovieApiService
 import javax.inject.Singleton
 
@@ -17,5 +19,10 @@ object DataModule {
     @Singleton
     fun provideRemoteDataSource(api: MovieApiService): MovieDataSources.Remote =
         RemoteDatasource(api = api)
+
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(dao: MovieDao): MovieDataSources.Local = LocalDataSources(dao)
 
 }

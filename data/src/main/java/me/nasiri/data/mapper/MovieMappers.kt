@@ -1,13 +1,14 @@
 package me.nasiri.data.mapper
 
-import me.nasiri.database.Genre
+import me.nasiri.data.model.Movie
+import me.nasiri.database.entitys.GenreEntity
 import me.nasiri.database.entitys.MovieEntity
 import me.nasiri.network.dto.MoviesListDto
 
 
 fun MoviesListDto.convert(
     checkFavorite: (Int) -> Boolean?,
-    checkGenre: (List<Int>) -> List<Genre>?,
+    checkGenre: (List<Int>) -> List<GenreEntity>?,
 ): List<MovieEntity> {
     return results?.mapNotNull {
         it ?: return@mapNotNull null
@@ -24,3 +25,20 @@ fun MoviesListDto.convert(
         )
     }!!
 }
+
+fun MovieEntity.convert(): Movie {
+    return Movie(
+        id = id!!,
+        adult = adult,
+        isFavorite = isFavorite,
+        title = title!!,
+        overview = overview!!,
+        releaseDate = releaseDate!!,
+        posterPath = posterPath!!,
+        backdropPath = backdropPath!!,
+        genres = genres.convert()
+    )
+}
+
+
+fun List<MovieEntity>.convert(): List<Movie> = map { it.convert() }

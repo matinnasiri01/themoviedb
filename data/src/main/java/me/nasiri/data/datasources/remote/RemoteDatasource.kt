@@ -2,7 +2,6 @@ package me.nasiri.data.datasources.remote
 
 import me.nasiri.data.datasources.MovieDataSources
 import me.nasiri.data.mapper.convert
-import me.nasiri.database.Genre
 import me.nasiri.database.entitys.GenreEntity
 import me.nasiri.database.entitys.MovieEntity
 import me.nasiri.network.MovieApiService
@@ -14,7 +13,7 @@ class RemoteDatasource @Inject constructor(private val api: MovieApiService) :
     override suspend fun getMovies(
         page: Int,
         checkFavorite: (Int) -> Boolean?,
-        checkGenre: (List<Int>) -> List<Genre>?,
+        checkGenre: (List<Int>) -> List<GenreEntity>?,
     ): List<MovieEntity> = api.getAllMovies(page = page).convert(checkFavorite, checkGenre)
 
 
