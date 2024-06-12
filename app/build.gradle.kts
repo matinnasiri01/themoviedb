@@ -76,5 +76,6 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":feature:home"))
     implementation(project(":feature:search"))
+    implementation(project(":feature:favourite"))
 
 }

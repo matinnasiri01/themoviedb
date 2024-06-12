@@ -1,4 +1,4 @@
-package me.nasiri.search
+package me.nasiri.favourite
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,17 +7,15 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import me.nasiri.domain.model.Movie
-import me.nasiri.domain.usecase.FetchMovieDataUseCase
-import me.nasiri.domain.usecase.GetMovieDataUseCase
+import me.nasiri.domain.usecase.GetFavoriteDataUseCase
 import me.nasiri.domain.usecase.LikeItemUseCase
 import me.nasiri.domain.util.State
 import me.nasiri.domain.util.runOnIO
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
-    private val fetchMovies: FetchMovieDataUseCase,
-    private val getMovies: GetMovieDataUseCase,
+class FavouriteViewModel @Inject constructor(
+    private val getMovies: GetFavoriteDataUseCase,
     private val likeMovie: LikeItemUseCase,
 ) : ViewModel() {
 
@@ -33,19 +31,9 @@ class SearchViewModel @Inject constructor(
         runOnIO {
             delay(100)
             getMovies().collect {
-                state = if (it.isNotEmpty()) {
-                    state.copy(isLoading = false, error = null, data = it)
-                } else {
-                    state.copy(isLoading = false, error = "Check your Connection", data = null)
-                }
+                state = state.copy(isLoading = false, error = null, data = it)
             }
         }
-    }
-
-    fun refreshData() {
-        state = state.copy(isLoading = true, error = null, data = null)
-        runOnIO { fetchMovies() }
-        init()
     }
 
     fun like(id: Int) {
