@@ -24,7 +24,7 @@ import me.nasiri.home.component.MovieItem
 
 
 @Composable
-fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier) {
+fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier= Modifier) {
     val homeState = vm.state
     val selectedGenres = remember { mutableStateListOf<Int>() }
 
