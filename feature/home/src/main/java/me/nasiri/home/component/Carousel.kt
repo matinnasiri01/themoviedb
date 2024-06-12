@@ -2,6 +2,7 @@ package me.nasiri.home.component
 
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,7 +35,7 @@ import me.nasiri.domain.model.Movie
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
-fun Carousel(list: List<Movie>, modifier: Modifier = Modifier) {
+fun Carousel(list: List<Movie>, modifier: Modifier = Modifier, onClick: (Int) -> Unit) {
 
     val state = rememberPagerState(initialPage = 1) { list.size }
 
@@ -58,14 +59,15 @@ fun Carousel(list: List<Movie>, modifier: Modifier = Modifier) {
                         stop = 1f,
                         fraction = 1f - kotlin.math.abs(pageOffset)
                     )
-                }
+                },
+                onClick = { onClick(it) }
             )
         }
     }
 }
 
 @Composable
-fun SliderItem(item: Movie, modifier: Modifier = Modifier) {
+fun SliderItem(item: Movie, modifier: Modifier = Modifier, onClick: (Int) -> Unit) {
     Box(
         modifier = modifier
             .width(440.dp)
@@ -75,7 +77,8 @@ fun SliderItem(item: Movie, modifier: Modifier = Modifier) {
         SubcomposeAsyncImage(
             modifier = Modifier
                 .fillMaxSize()
-                .clip(RoundedCornerShape(16.dp)),
+                .clip(RoundedCornerShape(16.dp))
+                .clickable { onClick(item.id) },
             model = item.backdropPath,
             loading = { CircularProgressIndicator(modifier = Modifier.align(Alignment.Center)) },
             contentScale = ContentScale.Crop,

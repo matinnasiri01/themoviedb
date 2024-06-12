@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import me.nasiri.home.HomeScreen
+import me.nasiri.search.SearchScreen
 import me.nasiri.themoviedb.presentation.ui.theme.ThemoviedbTheme
 
 
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ThemoviedbTheme {
                 Scaffold { innerPadding ->
-                    HomeScreen(modifier = Modifier.padding(innerPadding))
+                    SearchScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

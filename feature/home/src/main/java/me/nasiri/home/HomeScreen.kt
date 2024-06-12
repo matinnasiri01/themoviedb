@@ -47,7 +47,7 @@ fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier) {
             }
         }
         homeState.data?.let { (movies, genres) ->
-            item { Carousel(list = movies) }
+            item { Carousel(list = movies) {/* todo */ } }
             item {
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyRow(
@@ -66,7 +66,7 @@ fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier) {
                             if (selectedGenres.isNotEmpty()) selectedGenres.any { it in model.genres.map { id -> id.id } } else true
                         }
                     ) { movie ->
-                        MovieItem(item = movie) { vm.like(it) }
+                        MovieItem(item = movie, onClick = { /*todo*/ }) { vm.like(it) }
                     }
                 }
             }

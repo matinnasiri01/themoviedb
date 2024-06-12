@@ -1,5 +1,6 @@
 package me.nasiri.home.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,12 @@ import me.nasiri.domain.model.Movie
 
 
 @Composable
-fun MovieItem(item: Movie, modifier: Modifier = Modifier, onClick: (Int) -> Unit) {
+fun MovieItem(
+    item: Movie,
+    modifier: Modifier = Modifier,
+    onClick: (Int) -> Unit,
+    onLikeClick: (Int) -> Unit,
+) {
     Column(
         modifier = modifier
             .width(240.dp)
@@ -43,7 +49,8 @@ fun MovieItem(item: Movie, modifier: Modifier = Modifier, onClick: (Int) -> Unit
                     .align(Alignment.Center)
                     .fillMaxWidth()
                     .height(320.dp)
-                    .clip(RoundedCornerShape(16.dp)),
+                    .clip(RoundedCornerShape(16.dp))
+                    .clickable { onClick(item.id) },
                 model = item.posterPath,
                 loading = { CircularProgressIndicator(modifier = Modifier.align(Alignment.Center)) },
                 contentScale = ContentScale.Crop,
@@ -62,7 +69,7 @@ fun MovieItem(item: Movie, modifier: Modifier = Modifier, onClick: (Int) -> Unit
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                 )
-                IconButton(onClick = { onClick(item.id) }) {
+                IconButton(onClick = { onLikeClick(item.id) }) {
                     Icon(
                         imageVector = if (item.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = null,
