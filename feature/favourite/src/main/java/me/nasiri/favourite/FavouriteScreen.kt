@@ -14,10 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import me.nasiri.favourite.component.MovieItem
 
 @Composable
-fun FavouriteScreen(vm: FavouriteViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
+fun FavouriteScreen(
+    modifier: Modifier = Modifier, vm: FavouriteViewModel = hiltViewModel(),
+    nav: NavHostController,
+) {
     val state = vm.state
     LazyColumn(
         modifier = modifier
@@ -28,14 +32,20 @@ fun FavouriteScreen(vm: FavouriteViewModel = hiltViewModel(), modifier: Modifier
         if (state.isLoading) item { CircularProgressIndicator() }
         state.data?.let {
             item {
-                Text(text = "Favourite",modifier = Modifier.fillMaxWidth(), style = MaterialTheme.typography.headlineLarge)
+                Text(
+                    text = "Favourite",
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.headlineLarge
+                )
                 Spacer(modifier = Modifier.height(16.dp))
             }
             if (it.isEmpty()) {
                 item { Text(text = "List Empty") }
             } else {
                 items(it) { movie ->
-                    MovieItem(data = movie, onClick = { /*todo*/ }) { item -> vm.like(item) }
+                    MovieItem(
+                        data = movie,
+                        onClick = { nav.navigate("details/${it}") }) { item -> vm.like(item) }
                 }
             }
         }

@@ -28,7 +28,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
-    Scaffold(bottomBar = { MainNavigation(navController) }) { innerPadding ->
+
+    Scaffold(
+        bottomBar = { MainNavigation(navController) }
+    ) { innerPadding ->
         AppNavHost(navController = navController, modifier = Modifier.padding(innerPadding))
     }
 }

@@ -20,9 +20,9 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) 
         navController = navController,
         startDestination = ScreenRoute.HomeScreen.route
     ) {
-        composable(ScreenRoute.HomeScreen.route) { HomeScreen() }
-        composable(ScreenRoute.SearchScreen.route) { SearchScreen() }
-        composable(ScreenRoute.FavouritesScreen.route) { FavouriteScreen() }
+        composable(ScreenRoute.HomeScreen.route) { HomeScreen(nav = navController) }
+        composable(ScreenRoute.SearchScreen.route) { SearchScreen(nav = navController) }
+        composable(ScreenRoute.FavouritesScreen.route) { FavouriteScreen(nav = navController) }
         composable(
             ScreenRoute.Details.route,
             arguments = listOf(navArgument(POST_ID) { type = NavType.IntType })

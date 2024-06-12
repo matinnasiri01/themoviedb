@@ -17,11 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import me.nasiri.search.component.CuSearch
 import me.nasiri.search.component.MovieItem
 
 @Composable
-fun SearchScreen(vm: SearchViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
+fun SearchScreen(
+    modifier: Modifier = Modifier, vm: SearchViewModel = hiltViewModel(),
+    nav: NavHostController,
+) {
     val state = vm.state
     var text by remember { mutableStateOf("") }
     LazyColumn(
@@ -38,7 +42,7 @@ fun SearchScreen(vm: SearchViewModel = hiltViewModel(), modifier: Modifier = Mod
                 Spacer(modifier = Modifier.height(8.dp))
             }
             items(it) { movie ->
-                MovieItem(data = movie, onClick = { /*todo*/ }) { item -> vm.like(item) }
+                MovieItem(data = movie, onClick = { nav.navigate("details/${it}") }) { item -> vm.like(item) }
             }
         }
     }

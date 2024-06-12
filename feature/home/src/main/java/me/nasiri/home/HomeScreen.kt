@@ -18,13 +18,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import me.nasiri.home.component.Carousel
 import me.nasiri.home.component.GenreChipsItem
 import me.nasiri.home.component.MovieItem
 
 
 @Composable
-fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier= Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    vm: HomeViewModel = hiltViewModel(),
+    nav: NavHostController,
+) {
     val homeState = vm.state
     val selectedGenres = remember { mutableStateListOf<Int>() }
 
@@ -47,7 +52,7 @@ fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier= Modifier
             }
         }
         homeState.data?.let { (movies, genres) ->
-            item { Carousel(list = movies) {/* todo */ } }
+            item { Carousel(list = movies) { nav.navigate("details/${it}") } }
             item {
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyRow(
@@ -66,7 +71,9 @@ fun HomeScreen(vm: HomeViewModel = hiltViewModel(), modifier: Modifier= Modifier
                             if (selectedGenres.isNotEmpty()) selectedGenres.any { it in model.genres.map { id -> id.id } } else true
                         }
                     ) { movie ->
-                        MovieItem(item = movie, onClick = { /*todo*/ }) { vm.like(it) }
+                        MovieItem(
+                            item = movie,
+                            onClick = { nav.navigate("details/${it}") }) { vm.like(it) }
                     }
                 }
             }
